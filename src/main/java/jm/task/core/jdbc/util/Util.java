@@ -11,16 +11,17 @@ public class Util {
     private final static String PASSWORD = "katacon";
 
     public static Connection getConnection() {
-        Connection connection = null;
         {
-            try {
+            try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)){
                 Class.forName(DB_DRIVER);
-                connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+                return connection;
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
-        return connection;
+        return null;
     }
+
+
 
 }

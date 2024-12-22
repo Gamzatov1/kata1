@@ -9,9 +9,9 @@ import java.util.List;
 public class Main {
     public final static UserService userService = new UserServiceImpl();
     public final static User user1 = new User("Goku", "Son", (byte) 43);
-    public final static User user2 = new User("Piccolo", "Daimao", (byte)34);
-    public final static User user3 = new User("Jotaro", "Kyjo", (byte)17);
-    public final static User user4 = new User("Giorno", "Giovanna", (byte)15);
+    public final static User user2 = new User("Piccolo", "Daimao", (byte) 34);
+    public final static User user3 = new User("Jotaro", "Kyjo", (byte) 17);
+    public final static User user4 = new User("Giorno", "Giovanna", (byte) 15);
 
     public static void main(String[] args) {
         userService.createUsersTable();
