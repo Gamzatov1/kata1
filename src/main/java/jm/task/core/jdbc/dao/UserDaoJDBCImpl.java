@@ -41,11 +41,15 @@ public class UserDaoJDBCImpl implements UserDao {
         String sql = "INSERT INTO kata.users(name, lastname, age) VALUES(?,?,?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            connection.setAutoCommit(false);
+
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, lastName);
             preparedStatement.setByte(3, age);
             preparedStatement.executeUpdate();
             System.out.println("User \"" + name + lastName + "\" added");
+
+            connection.commit();
         } catch (SQLException e) {
             try {
                 connection.rollback();
@@ -58,8 +62,12 @@ public class UserDaoJDBCImpl implements UserDao {
     @Override
     public void removeUserById(long id) {
         try (Statement statement = connection.createStatement()) {
+            connection.setAutoCommit(false);
+
             statement.executeUpdate("DELETE FROM kata.users where id");
             System.out.println("User deleted");
+
+            connection.commit();
         } catch (SQLException e) {
             try {
                 connection.rollback();
@@ -93,8 +101,12 @@ public class UserDaoJDBCImpl implements UserDao {
     @Override
     public void cleanUsersTable() {
         try (Statement statement = connection.createStatement()) {
+            connection.setAutoCommit(false);
+
             statement.executeUpdate("DELETE FROM kata.users");
             System.out.println("table cleaned");
+
+            connection.commit();
         } catch (SQLException e) {
             try {
                 connection.rollback();

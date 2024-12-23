@@ -6,15 +6,16 @@ import java.sql.SQLException;
 
 public class Util {
 
-    private Util() {
-    }
-
     private final static String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
     private final static String URL = "jdbc:mysql://localhost:3306/?user=root";
     private final static String USERNAME = "root";
     private final static String PASSWORD = "katacon";
 
     private static Connection connection = null;
+
+
+    private Util() {
+    }
 
     public static Connection getConnection() {
 
